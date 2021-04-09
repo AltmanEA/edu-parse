@@ -19,10 +19,17 @@ val doc =
         .newInstance()
         .newDocumentBuilder()
         .parse(
-            Main::class.java.getResourceAsStream("data.xml")
+            Main::class.java.getResourceAsStream("data_part.xml")
         )
 
 fun main() {
+
+    val extractor = { node: Node ->
+        val year = node.getText("../..//Time")
+        val month = node.getText("../..//Value[@concept='PERIOD']/@value")
+        val value = node.getText("../..//ObsValue/@value")
+        "$month $year: $value\n"
+    }
 
     listOf(
         "//CodeList/Name" to { node: Node ->
@@ -35,13 +42,12 @@ fun main() {
         "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
             node.getText("../@value") + ": " + node.getText(".")
         },
-        "//Series/SeriesKey[Value/@value='643']" to { node: Node ->
-            val series = node.parentNode
-            (series.getText("//Value[@concept='PERIOD']/@value") +
-                    series.getText("//ObsValue/@value")).also {
-                print(it)
-                    }
-        }
+//        "//SeriesKey/Value[@value='643']"
+//                to extractor,
+//        "//SeriesKey/Value[@value='643'][../../Attributes/Value[@concept='PERIOD' and not(contains(@value, '-'))]]"
+//                to extractor,
+        "//SeriesKey/Value[@concept='s_OKATO' and @value='643'][../Value[@concept='s_OKVED2' and @value='62']][../../Attributes/Value[@concept='PERIOD' and not(contains(@value, '-'))]]"
+                to extractor
     ).map { (query, cursorQuery) ->
         val result = parser
             .compile(query)
