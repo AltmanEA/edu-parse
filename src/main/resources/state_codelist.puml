@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+[*] --> Lists: start_CodeLists
+Lists --> Codes: start_CodeList
+Codes --> Name: start_Name
+Name -> Read: cdata
+Name -> Codes: end_Name
+Codes --> Lists: end_CodeList
+Lists --> [*]: end_CodeLists
+
+@enduml

@@ -32,16 +32,16 @@ fun main() {
     }
 
     listOf(
-        "//CodeList/Name" to { node: Node ->
-            node.firstChild.nodeValue
-        },
-        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
-            node.firstChild.nodeValue + " - " +
-                    node.parentNode.attributes.getNamedItem("value").nodeValue
-        },
-        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
-            node.getText("../@value") + ": " + node.getText(".")
-        },
+//        "//CodeList/Name" to { node: Node ->
+//            node.firstChild.nodeValue
+//        },
+//        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
+//            node.firstChild.nodeValue + " - " +
+//                    node.parentNode.attributes.getNamedItem("value").nodeValue
+//        },
+//        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
+//            node.getText("../@value") + ": " + node.getText(".")
+//        },
 //        "//SeriesKey/Value[@value='643']"
 //                to extractor,
 //        "//SeriesKey/Value[@value='643'][../../Attributes/Value[@concept='PERIOD' and not(contains(@value, '-'))]]"
