@@ -13,12 +13,14 @@ state GetObs{
     GetValue --> GetObs: endValue
 }
 
-Dataset -> CheckSeries : startSeries
+[*] -->Dataset
+Dataset --> Series : startSeries
+Series --> Dataset: endSeries
 CheckSeries --> Series: rightSeries
 CheckSeries --> Dataset: wrongSeries
 Series --> GetAttributes: startAttributes
 GetAttributes --> Series: endAttributes
 Series --> GetObs: startObs
 GetObs --> Series: endObs
-Series -> Dataset: endSeries
+
 @enduml

@@ -1,59 +1,43 @@
-import State.Companion.current
-import State.Companion.result
+import Reader.Companion.reader
 import javax.xml.stream.XMLStreamReader
 
-interface State {
-    companion object {
-        var current: State = start
-        var result = ""
-    }
-
-    fun eval(eventType: Int, reader: XMLStreamReader)
+fun interface State {
+    fun eval(eventType: Int)
 }
 
-val start = Start()
-val lists = Lists()
-val codes = Codes()
-
-class Start : State {
-    override fun eval(eventType: Int, reader: XMLStreamReader) {
-        when (eventType) {
-            XMLStreamReader.START_ELEMENT ->
-                if (reader.localName == "CodeLists")
-                    current = lists
-        }
+private val start: State = State {
+    when (it) {
+        XMLStreamReader.START_ELEMENT ->
+            if (reader.localName == "CodeLists")
+                current = lists
     }
 }
-
-class Lists : State {
-    override fun eval(eventType: Int, reader: XMLStreamReader) {
-        when (eventType) {
-            XMLStreamReader.START_ELEMENT ->
-                if (reader.localName == "CodeList")
-                    current = codes
-            XMLStreamReader.END_ELEMENT ->
-                if (reader.localName == "CodeLists")
-                    current = start
-        }
+private val lists: State = State {
+    when (it) {
+        XMLStreamReader.START_ELEMENT ->
+            if (reader.localName == "CodeList")
+                current = codes
+        XMLStreamReader.END_ELEMENT ->
+            if (reader.localName == "CodeLists")
+                current = start
+    }
+}
+private val codes: State = State {
+    when (it) {
+        XMLStreamReader.START_ELEMENT ->
+            if (reader.localName == "Name")
+                result += reader.elementText + "\n"
+        XMLStreamReader.END_ELEMENT ->
+            if (reader.localName == "CodeList")
+                current = lists
     }
 }
 
-class Codes : State {
-    override fun eval(eventType: Int, reader: XMLStreamReader) {
-        when (eventType) {
-            XMLStreamReader.START_ELEMENT ->
-                if (reader.localName == "Name")
-                    result += reader.elementText + "\n"
-            XMLStreamReader.END_ELEMENT ->
-                if (reader.localName == "CodeList")
-                    current = lists
-        }
-    }
-}
-
+private var result = ""
+private var current: State = start
 
 fun main() {
     while (reader.hasNext())
-        current.eval(reader.next(), reader)
+        current.eval(reader.next())
     print(result)
 }

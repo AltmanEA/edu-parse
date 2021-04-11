@@ -1,12 +1,7 @@
-import javax.xml.stream.XMLInputFactory
+import Reader.Companion.reader
 import javax.xml.stream.XMLStreamReader
 
-val reader = XMLInputFactory
-    .newInstance()
-    .createXMLStreamReader(
-        Main::class.java.getResourceAsStream("data_part.xml")
-    )
-var result = ""
+private var result = ""
 
 fun main() {
     while (reader.hasNext())
@@ -21,8 +16,7 @@ fun main() {
     print(result)
 }
 
-
-fun readLists() {
+private fun readLists() {
     while (reader.hasNext())
         when (reader.next()) {
             XMLStreamReader.START_ELEMENT ->
@@ -34,7 +28,7 @@ fun readLists() {
         }
 }
 
-fun readList() {
+private fun readList() {
     while (reader.hasNext())
         when (reader.next()) {
             XMLStreamReader.START_ELEMENT ->

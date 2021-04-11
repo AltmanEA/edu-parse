@@ -1,6 +1,7 @@
+import Reader.Companion.reader
 import javax.xml.stream.XMLStreamReader
 
-private class Point(
+class Point(
     var year: Int = 0,
     var period: String = "",
     var value: Float = 0f
@@ -10,17 +11,17 @@ private class Point(
 
 }
 
-private val data = ArrayList<Point>()
+private val result = ArrayList<Point>()
 
 fun main() {
     while (reader.hasNext())
         if (reader.next() == XMLStreamReader.START_ELEMENT)
             if (reader.localName == "Series")
                 checkSeriesKey()
-    print(data)
+    print(result)
 }
 
-fun checkSeriesKey() {
+private fun checkSeriesKey() {
     while (reader.hasNext())
         when (reader.next()) {
             XMLStreamReader.START_ELEMENT ->
@@ -32,7 +33,7 @@ fun checkSeriesKey() {
         }
 }
 
-fun checkValue() {
+private fun checkValue() {
     var rightValues = 0
     while (reader.hasNext())
         when (reader.next()) {
@@ -55,7 +56,7 @@ fun checkValue() {
         }
 }
 
-fun readSeries() {
+private fun readSeries() {
     val point = Point()
     while (reader.hasNext())
         when (reader.next()) {
@@ -67,7 +68,7 @@ fun readSeries() {
             XMLStreamReader.END_ELEMENT ->
                 if (reader.localName == "Series"){
                     if(point.period!="")
-                        data.add(point)
+                        result.add(point)
                     return
                 }
 
