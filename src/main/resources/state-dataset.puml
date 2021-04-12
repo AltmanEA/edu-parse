@@ -1,26 +1,16 @@
 @startuml
 'https://plantuml.com/state-diagram
 
-state GetAttributes {
-    GetAttributes --> GetPeriod: startValue
-    GetPeriod --> GetAttributes: endValue
-}
-
-state GetObs{
-    GetObs --> GetTime: startTime
-    GetTime --> GetObs: endTime
-    GetObs --> GetValue: startValue
-    GetValue --> GetObs: endValue
-}
-
 [*] -->Dataset
-Dataset --> Series : startSeries
-Series --> Dataset: endSeries
-CheckSeries --> Series: rightSeries
+Dataset -> Series : startSeries
+Series --> CheckSeries: startSeriesKey
+CheckSeries --> RightSeries: rightSeries
 CheckSeries --> Dataset: wrongSeries
-Series --> GetAttributes: startAttributes
-GetAttributes --> Series: endAttributes
-Series --> GetObs: startObs
-GetObs --> Series: endObs
+RightSeries --> Dataset: endSeries
+
+RightSeries --> GetAttributes: startAttributes
+GetAttributes --> RightSeries: findPeriod
+RightSeries --> GetObs: startObs
+GetObs --> RightSeries: endObs
 
 @enduml
