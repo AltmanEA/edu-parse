@@ -1,6 +1,9 @@
 import Reader.Companion.reader
 import javax.xml.stream.XMLStreamReader
 
+private val reader = reader()
+
+
 fun interface State {
     fun eval(eventType: Int)
 }

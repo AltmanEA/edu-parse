@@ -1,0 +1,121 @@
+"C:\Program Files\Java\jdk-15\bin\java.exe" -javaagent:C:\home\Toolbox\apps\IDEA-U\ch-0\211.6693.111\lib\idea_rt.jar=52668:C:\home\Toolbox\apps\IDEA-U\ch-0\211.6693.111\bin -Dfile.encoding=UTF-8 -classpath C:\Work\kotlin\edu-parse\build\classes\kotlin\main;C:\Work\kotlin\edu-parse\build\resources\main;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk8\1.4.32\3302f9ec8a5c1ed220781dbd37770072549bd333\kotlin-stdlib-jdk8-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk7\1.4.32\3546900a3ebff0c43f31190baf87a9220e37b7ea\kotlin-stdlib-jdk7-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.4.32\461367948840adbb0839c51d91ed74ef4a9ccb52\kotlin-stdlib-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-common\1.4.32\ef50bfa2c0491a11dcc35d9822edbfd6170e1ea2\kotlin-stdlib-common-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar _1_regexpKt
+--- Split example ---
+
+--- Pattern:   ---
+Пример
+		range - 6..6; value - | |
+первый.
+		range - 14..14; value - | |
+Разделяем
+		range - 24..24; value - | |
+на
+		range - 27..27; value - | |
+слова,
+		range - 34..34; value - | |
+учитываем
+		range - 44..44; value - | |
+знаки
+		range - 50..50; value - | |
+--- Pattern: [,. ] ---
+Пример
+		range - 6..6; value - | |
+первый
+		range - 13..13; value - |.|
+
+		range - 14..14; value - | |
+Разделяем
+		range - 24..24; value - | |
+на
+		range - 27..27; value - | |
+слова
+		range - 33..33; value - |,|
+
+		range - 34..34; value - | |
+учитываем
+		range - 44..44; value - | |
+знаки
+		range - 50..50; value - | |
+препинания
+		range - 61..61; value - |.|
+--- Pattern: [,.]?  ---
+Пример
+		range - 6..6; value - | |
+первый
+		range - 13..14; value - |. |
+Разделяем
+		range - 24..24; value - | |
+на
+		range - 27..27; value - | |
+слова
+		range - 33..34; value - |, |
+учитываем
+		range - 44..44; value - | |
+знаки
+		range - 50..50; value - | |
+--- Pattern: [[,.]? |.] ---
+Пример
+		range - 6..6; value - | |
+первый
+		range - 13..13; value - |.|
+
+		range - 14..14; value - | |
+Разделяем
+		range - 24..24; value - | |
+на
+		range - 27..27; value - | |
+слова
+		range - 33..33; value - |,|
+
+		range - 34..34; value - | |
+учитываем
+		range - 44..44; value - | |
+знаки
+		range - 50..50; value - | |
+препинания
+		range - 61..61; value - |.|
+--- Pattern: [[,|.]? |.]+ ---
+Пример
+		range - 6..6; value - | |
+первый
+		range - 13..14; value - |. |
+Разделяем
+		range - 24..24; value - | |
+на
+		range - 27..27; value - | |
+слова
+		range - 33..34; value - |, |
+учитываем
+		range - 44..44; value - | |
+знаки
+		range - 50..50; value - | |
+препинания
+		range - 61..61; value - |.|
+
+--- Replace example ---
+
+Достоевский Ф. М. и Толстой Л. Н.. И Пушкин А. С., конечно.
+
+--- Find example ---
+
+--- Pattern: <.*> ---
+---	 range - 0..45; value - |<div class='x'> text <b> bold </b> text </div>|
+--- Pattern: <[^>]*> ---
+---	 range - 0..14; value - |<div class='x'>|
+---	 range - 21..23; value - |<b>|
+---	 range - 30..33; value - |</b>|
+---	 range - 40..45; value - |</div>|
+--- Pattern: <.*?> ---
+---	 range - 0..14; value - |<div class='x'>|
+---	 range - 21..23; value - |<b>|
+---	 range - 30..33; value - |</b>|
+---	 range - 40..45; value - |</div>|
+--- Pattern: <(.*?)>.*</\1> ---
+---	 range - 21..33; value - |<b> bold </b>|
+	 range - 22..22; value - |b|
+--- Pattern: <(\w*?)(.*?)>(.*)</\1> ---
+---	 range - 0..45; value - |<div class='x'> text <b> bold </b> text </div>|
+	 range - 1..3; value - |div|
+	 range - 4..13; value - | class='x'|
+	 range - 15..39; value - | text <b> bold </b> text |
+
+Process finished with exit code 0

@@ -2,6 +2,7 @@ import Reader.Companion.reader
 import javax.xml.stream.XMLStreamReader
 
 private var result = ""
+private val reader = reader()
 
 fun main() {
     while (reader.hasNext())

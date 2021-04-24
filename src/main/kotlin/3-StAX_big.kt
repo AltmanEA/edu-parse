@@ -12,6 +12,7 @@ class Point(
 }
 
 private val result = ArrayList<Point>()
+private val reader = reader()
 
 fun main() {
     while (reader.hasNext())

@@ -1,0 +1,27 @@
+"C:\Program Files\Java\jdk-15\bin\java.exe" -javaagent:C:\home\Toolbox\apps\IDEA-U\ch-0\211.6693.111\lib\idea_rt.jar=52721:C:\home\Toolbox\apps\IDEA-U\ch-0\211.6693.111\bin -Dfile.encoding=UTF-8 -classpath C:\Work\kotlin\edu-parse\build\classes\kotlin\main;C:\Work\kotlin\edu-parse\build\resources\main;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk8\1.4.32\3302f9ec8a5c1ed220781dbd37770072549bd333\kotlin-stdlib-jdk8-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk7\1.4.32\3546900a3ebff0c43f31190baf87a9220e37b7ea\kotlin-stdlib-jdk7-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.4.32\461367948840adbb0839c51d91ed74ef4a9ccb52\kotlin-stdlib-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-common\1.4.32\ef50bfa2c0491a11dcc35d9822edbfd6170e1ea2\kotlin-stdlib-common-1.4.32.jar;C:\home\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar _3_StAX_bigKt
+[2018 январь: 80078.3
+, 2018 февраль: 79768.34
+, 2018 март: 86360.83
+, 2018 апрель: 81437.37
+, 2018 май: 78942.09
+, 2018 июнь: 184905.6
+, 2018 июль: 78829.66
+, 2018 август: 78056.08
+, 2018 сентябрь: 74535.26
+, 2018 октябрь: 74886.33
+, 2018 ноябрь: 79490.39
+, 2018 декабрь: 108148.52
+, 2019 январь: 90105.33
+, 2019 февраль: 96335.54
+, 2019 март: 102268.05
+, 2019 апрель: 98365.31
+, 2019 май: 94469.37
+, 2019 июнь: 94306.98
+, 2019 июль: 96221.11
+, 2019 август: 95300.72
+, 2019 сентябрь: 92909.67
+, 2019 октябрь: 96160.46
+, 2019 ноябрь: 99292.14
+, 2019 декабрь: 131945.97
+]
+Process finished with exit code 0

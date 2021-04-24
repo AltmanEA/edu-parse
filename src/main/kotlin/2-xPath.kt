@@ -7,20 +7,13 @@ import javax.xml.xpath.XPathFactory
 // https://www.freeformatter.com/xpath-tester.html - для тестирования xpath запросов
 // https://fedstat.ru/
 
-class Main
-
-val parser =
+private val parser =
     XPathFactory
         .newInstance()
         .newXPath()
 
-val doc =
-    DocumentBuilderFactory
-        .newInstance()
-        .newDocumentBuilder()
-        .parse(
-            Main::class.java.getResourceAsStream("data_part.xml")
-        )
+private val doc =
+    Reader.doc()
 
 fun main() {
 
@@ -32,20 +25,20 @@ fun main() {
     }
 
     listOf(
-//        "//CodeList/Name" to { node: Node ->
-//            node.firstChild.nodeValue
-//        },
-//        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
-//            node.firstChild.nodeValue + " - " +
-//                    node.parentNode.attributes.getNamedItem("value").nodeValue
-//        },
-//        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
-//            node.getText("../@value") + ": " + node.getText(".")
-//        },
-//        "//SeriesKey/Value[@value='643']"
-//                to extractor,
-//        "//SeriesKey/Value[@value='643'][../../Attributes/Value[@concept='PERIOD' and not(contains(@value, '-'))]]"
-//                to extractor,
+        "//CodeList/Name" to { node: Node ->
+            node.firstChild.nodeValue
+        },
+        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
+            node.firstChild.nodeValue + " - " +
+                    node.parentNode.attributes.getNamedItem("value").nodeValue
+        },
+        "//CodeList[@id='s_OKATO']/Code/Description[contains(.,'мск')]" to { node: Node ->
+            node.getText("../@value") + ": " + node.getText(".")
+        },
+        "//SeriesKey/Value[@value='643']"
+                to extractor,
+        "//SeriesKey/Value[@value='643'][../../Attributes/Value[@concept='PERIOD' and not(contains(@value, '-'))]]"
+                to extractor,
         "//SeriesKey/Value[@concept='s_OKATO' and @value='643'][../Value[@concept='s_OKVED2' and @value='62']][../../Attributes/Value[@concept='PERIOD' and not(contains(@value, '-'))]]"
                 to extractor
     ).map { (query, cursorQuery) ->

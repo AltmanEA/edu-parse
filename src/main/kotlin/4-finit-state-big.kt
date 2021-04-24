@@ -1,6 +1,8 @@
 import Reader.Companion.reader
 import javax.xml.stream.XMLStreamReader
 
+private val reader = reader()
+
 private val dataset: State = State {
     when (it) {
         XMLStreamReader.START_ELEMENT ->
