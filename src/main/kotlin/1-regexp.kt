@@ -19,6 +19,7 @@ fun main() {
                 println("range - ${matchGroup?.range}; value - |${matchGroup?.value}|")
             }
         }
+        println(result.last())
     }
 
     println("\n--- Replace example ---\n")
