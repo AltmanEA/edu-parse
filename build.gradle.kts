@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.8.0"
     application
 }
 
@@ -12,12 +12,15 @@ repositories {
     mavenCentral()
 }
 
+val kotestVersion = "5.5.5"
+
 dependencies {
-    testImplementation(kotlin("test-junit"))
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 }
 
-tasks.test {
-    useJUnit()
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
 
 tasks.withType<KotlinCompile>() {
